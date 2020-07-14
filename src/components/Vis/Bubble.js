@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export default () => {
     const [pokeTypes, setTypes] = useState([]);
+    const [selected, setSelected] = useState('');
 
     const getData = async () => {
         const response = await axios.get('https://pokeapi.co/api/v2/type');
@@ -18,6 +19,7 @@ export default () => {
                             type: data.results[i].name,
                             count: resp.data.pokemon.length,
                             value: resp.data.pokemon.length,
+                            data: resp.data,
                         });
                     }
                 }
@@ -25,10 +27,10 @@ export default () => {
             setTypes(pokeTypes);
         }
     };
-
     getData();
-    const width = 932;
-    const height = 932;
+
+    const width = 700;
+    const height = 700;
 
     const pack = (data) =>
         d3
@@ -36,25 +38,42 @@ export default () => {
             .size([width - 2, height - 2])
             .padding(3)(d3.hierarchy({ children: data }).sum((d) => d.value));
     const stuft = pack(pokeTypes);
+
     return (
-        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} overflow="auto">
+        <svg className="BubbleChart" width={width} height={height} viewBox={`0 0 ${width} ${height}`} overflow="auto">
             <title>Pokemon Types</title>
-            <text textAnchor="middle" transform="translate(466,20)">
+            <text id="PokeTitle" textAnchor="middle" transform={`translate(${width / 2},20)`}>
                 Pokemon Types
             </text>
+
+            {stuft.children &&
+                stuft.children.map((child, index) => {
+                    return (
+                        <g
+                            key={index}
+                            transform={`translate(${child.x + 1},${child.y + 1})`}
+                            onClick={() => {
+                                console.log('boop', child.data);
+                                setSelected(child.data.type);
+                            }}
+                        >
+                            <circle
+                                id={`${child.data.type}-${child.data.count}`}
+                                r={child.r}
+                                fillOpacity={selected === child.data.type ? '1' : '0.7'}
+                                fill="#ff7f0e"
+                            />
+                        </g>
+                    );
+                })}
+
             {stuft.children &&
                 stuft.children.map((child, index) => {
                     return (
                         <g key={index} transform={`translate(${child.x + 1},${child.y + 1})`}>
-                            <text textAnchor="middle">
+                            <text textAnchor="middle" fill="#000000">
                                 <tspan>{child.data.type.toUpperCase()}</tspan>
                             </text>
-                            <circle
-                                id={`${child.data.type}-${child.data.count}`}
-                                r={child.r}
-                                fillOpacity="0.7"
-                                fill="#ff7f0e"
-                            ></circle>
                         </g>
                     );
                 })}

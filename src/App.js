@@ -8,7 +8,9 @@ function App() {
         <div className="App">
             <Header />
             <main>
+                <span className="Line"> place holder for line graph</span>
                 <BubbleChart />
+                <span className="Family"> placeholder for family tree</span>
             </main>
         </div>
     );
