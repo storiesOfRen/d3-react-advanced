@@ -10,7 +10,7 @@ export default ({ bubbleData, setSelected }) => {
             .pack()
             .size([width - 2, height - 2])
             .padding(3)(d3.hierarchy({ children: data }).sum((d) => d.value));
-    const stuft = pack(bubbleData);
+    const pokeStuffing = pack(bubbleData);
 
     return (
         <svg className="BubbleChart" width={width} height={height} viewBox={`0 0 ${width} ${height}`} overflow="auto">
@@ -19,14 +19,13 @@ export default ({ bubbleData, setSelected }) => {
                 Pokemon Types
             </text>
 
-            {stuft.children &&
-                stuft.children.map((child, index) => {
+            {pokeStuffing.children &&
+                pokeStuffing.children.map((child, index) => {
                     return (
                         <g
                             key={index}
                             transform={`translate(${child.x + 1},${child.y + 1})`}
                             onClick={() => {
-                                console.log('boop', child.data);
                                 setSelected(child.data.type);
                             }}
                         >
@@ -40,8 +39,8 @@ export default ({ bubbleData, setSelected }) => {
                     );
                 })}
 
-            {stuft.children &&
-                stuft.children.map((child, index) => {
+            {pokeStuffing.children &&
+                pokeStuffing.children.map((child, index) => {
                     return (
                         <g key={index} transform={`translate(${child.x + 1},${child.y + 1})`}>
                             <text textAnchor="middle" fill="#000000">
