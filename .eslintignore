@@ -3,3 +3,4 @@ src/index.js
 src/setupTests.js
 src/**/*.test.js
 src/**/*.spec.js
+/node_modules
