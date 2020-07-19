@@ -5,6 +5,7 @@ import './App.scss';
 
 const App = () => {
     const [pokeTypes, setTypes] = useState([]);
+    const [selected, setSelected] = useState('');
 
     const getData = async () => {
         const response = await axios.get('https://pokeapi.co/api/v2/type');
