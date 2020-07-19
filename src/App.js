@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BubbleChart from './components/Vis/Bubble';
 import Header from './components/Header';
 import './App.scss';
 
 const App = () => {
     const [pokeTypes, setTypes] = useState([]);
-    const [selected, setSelected] = useState('');
+    const [selectedType, setSelected] = useState('');
 
-    const getData = async () => {
+    const getBubbleData = async () => {
         const response = await axios.get('https://pokeapi.co/api/v2/type');
         if (response.status === 200) {
             const pokeTypes = [];
@@ -29,13 +29,17 @@ const App = () => {
             setTypes(pokeTypes);
         }
     };
-    getData();
+    getBubbleData();
+    useEffect(() => {
+        // this is wehere we will make additional api calls to get related data to the selected Type
+        if (selectedType) console.log(selectedType);
+    }, [selectedType]);
     return (
         <div className="App">
             <Header />
             <main>
                 <span className="Line"> place holder for line graph</span>
-                <BubbleChart />
+                <BubbleChart bubbleData={pokeTypes} setSelected={setSelected} />
                 <span className="Family"> placeholder for family tree</span>
             </main>
         </div>
