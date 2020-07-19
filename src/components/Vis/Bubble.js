@@ -1,43 +1,22 @@
 import React, { useState } from 'react';
 import * as d3 from 'd3';
-import axios from 'axios';
 
-export default () => {
-    const [pokeTypes, setTypes] = useState([]);
-    const [selected, setSelected] = useState('');
-
-    const getData = async () => {
-        const response = await axios.get('https://pokeapi.co/api/v2/type');
-        if (response.status === 200) {
-            const pokeTypes = [];
-            const { data } = response;
-            for (let i = 0; i < data.count; i++) {
-                const resp = await axios.get(data.results[i].url);
-                if (resp.status === 200) {
-                    if (resp.data.pokemon.length > 0) {
-                        pokeTypes.push({
-                            type: data.results[i].name,
-                            count: resp.data.pokemon.length,
-                            value: resp.data.pokemon.length,
-                            data: resp.data,
-                        });
-                    }
-                }
-            }
-            setTypes(pokeTypes);
-        }
-    };
-    getData();
-
+export default ({ bubbleData }) => {
     const width = 700;
     const height = 700;
+
+    // Creates a new pack layout with the default settings: the default sort order is by ascending value; the default children accessor assumes each input data is an object with a children array; the default size is 1×1.
+
+    // https://d3-wiki.readthedocs.io/zh_CN/master/Pack-Layout/#pack
 
     const pack = (data) =>
         d3
             .pack()
             .size([width - 2, height - 2])
             .padding(3)(d3.hierarchy({ children: data }).sum((d) => d.value));
-    const pokeStuffing = pack(pokeTypes);
+
+    const pokeStuffing = pack(bubbleData);
+    console.log(pokeStuffing);
 
     return (
         <svg className="BubbleChart" width={width} height={height} viewBox={`0 0 ${width} ${height}`} overflow="auto">
