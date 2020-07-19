@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import BubbleChart from './components/Vis/Bubble';
 import Header from './components/Header';
 import './App.scss';
@@ -39,7 +40,7 @@ const App = () => {
             <Header />
             <main>
                 <span className="Line"> place holder for line graph</span>
-                <BubbleChart bubbleData={pokeTypes} setSelected={setSelected} />
+                <BubbleChart bubbleData={pokeTypes} setSelected={setSelected} selected={selectedType} />
                 <span className="Family"> placeholder for family tree</span>
             </main>
         </div>
