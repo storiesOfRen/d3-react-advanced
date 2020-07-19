@@ -37,7 +37,7 @@ export default () => {
             .pack()
             .size([width - 2, height - 2])
             .padding(3)(d3.hierarchy({ children: data }).sum((d) => d.value));
-    const stuft = pack(pokeTypes);
+    const pokeStuffing = pack(pokeTypes);
 
     return (
         <svg className="BubbleChart" width={width} height={height} viewBox={`0 0 ${width} ${height}`} overflow="auto">
@@ -45,38 +45,6 @@ export default () => {
             <text id="PokeTitle" textAnchor="middle" transform={`translate(${width / 2},20)`}>
                 Pokemon Types
             </text>
-
-            {stuft.children &&
-                stuft.children.map((child, index) => {
-                    return (
-                        <g
-                            key={index}
-                            transform={`translate(${child.x + 1},${child.y + 1})`}
-                            onClick={() => {
-                                console.log('boop', child.data);
-                                setSelected(child.data.type);
-                            }}
-                        >
-                            <circle
-                                id={`${child.data.type}-${child.data.count}`}
-                                r={child.r}
-                                fillOpacity={selected === child.data.type ? '1' : '0.7'}
-                                fill="#ff7f0e"
-                            />
-                        </g>
-                    );
-                })}
-
-            {stuft.children &&
-                stuft.children.map((child, index) => {
-                    return (
-                        <g key={index} transform={`translate(${child.x + 1},${child.y + 1})`}>
-                            <text textAnchor="middle" fill="#000000">
-                                <tspan>{child.data.type.toUpperCase()}</tspan>
-                            </text>
-                        </g>
-                    );
-                })}
         </svg>
     );
 };
