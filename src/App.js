@@ -36,7 +36,7 @@ const App = () => {
             <Header />
             <main>
                 <span className="Line"> place holder for line graph</span>
-                <BubbleChart bubbleData={pokeTypes} setSelected={setSelected} />
+                <BubbleChart bubbleData={pokeTypes} />
                 <span className="Family"> placeholder for family tree</span>
             </main>
         </div>
