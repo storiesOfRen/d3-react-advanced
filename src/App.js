@@ -8,7 +8,7 @@ const App = () => {
     const [pokeTypes, setTypes] = useState([]);
     const [selectedType, setSelected] = useState('');
 
-    const getBubbleData = async () => {
+    const getInitialData = async () => {
         try {
             const { data } = await axios.get('https://pokeapi.co/api/v2/type');
             const types = [];
@@ -28,7 +28,7 @@ const App = () => {
             console.error(err);
         }
     };
-    getBubbleData();
+    getInitialData();
     useEffect(() => {
         // this is wehere we will make additional api calls to get related data to the selected Type
         if (selectedType) console.log(selectedType);
