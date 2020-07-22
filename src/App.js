@@ -7,29 +7,27 @@ import './App.scss';
 const App = () => {
     const [pokeTypes, setTypes] = useState([]);
 
-    const getData = async () => {
-        const response = await axios.get('https://pokeapi.co/api/v2/type');
-        if (response.status === 200) {
-            const pokeTypes = [];
-            const { data } = response;
+    const getInitialData = async () => {
+        try {
+            const { data } = await axios.get('https://pokeapi.co/api/v2/type');
+            const types = [];
             for (let i = 0; i < data.count; i++) {
-                const resp = await axios.get(data.results[i].url);
-                if (resp.status === 200) {
-                    if (resp.data.pokemon.length > 0) {
-                        // taking in the data that I need initially for our bubble chart constraction
-                        pokeTypes.push({
-                            type: data.results[i].name,
-                            count: resp.data.pokemon.length,
-                            value: resp.data.pokemon.length,
-                            data: resp.data,
-                        });
-                    }
+                const response = await axios.get(data.results[i].url);
+                if (response.status === 200 && response.data.pokemon.length > 0) {
+                    types.push({
+                        type: data.results[i].name,
+                        count: response.data.pokemon.length,
+                        value: response.data.pokemon.length,
+                        data: response.data,
+                    });
                 }
             }
-            setTypes(pokeTypes);
+            setTypes(types);
+        } catch (err) {
+            console.error(err);
         }
     };
-    getData();
+    getInitialData();
 
     return (
         <div className="App">
