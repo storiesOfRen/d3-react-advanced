@@ -14,7 +14,7 @@
     main {
         grid-area: main;
         display: grid;
-        grid: 'detail bubble family' / auto 1fr auto;
+        grid: 'mons bubble detail' / auto 1fr auto;
     }
     .Detail {
         grid-area: detail;
@@ -24,7 +24,7 @@
         justify-self: center;
     }
 
-    .Family {
+    .MonList {
         grid-area: family;
     }
 }
