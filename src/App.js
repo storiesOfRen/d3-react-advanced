@@ -37,9 +37,9 @@ const App = () => {
         <div className="App">
             <Header />
             <main>
-                <span className="Line"> place holder for line graph</span>
+                <span className="MonList"> place holder for Pokemon List</span>
                 <BubbleChart bubbleData={pokeTypes} setSelected={setSelected} selected={selectedType} />
-                <span className="Family"> placeholder for family tree</span>
+                <span className="Detail"> placeholder for Detail</span>
             </main>
         </div>
     );

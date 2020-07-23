@@ -14,10 +14,10 @@
     main {
         grid-area: main;
         display: grid;
-        grid: 'line bubble family' / auto 1fr auto;
+        grid: 'detail bubble family' / auto 1fr auto;
     }
-    .Line {
-        grid-area: line;
+    .Detail {
+        grid-area: detail;
     }
     .BubbleChart {
         grid-area: bubble;
