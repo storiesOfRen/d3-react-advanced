@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import BubbleChart from './components/Vis/Bubble';
 import Header from './components/Header';
+import PokeList from './components/PokeMons';
 import './App.scss';
 
 const App = () => {
     const [pokeTypes, setTypes] = useState([]);
     const [selectedType, setSelected] = useState('');
+    const [selectedPokemon, setSelectedMon] = useState('');
+    const [pokemonList, setPokeList] = useState([]);
 
     const getInitialData = async () => {
         try {
@@ -29,16 +32,47 @@ const App = () => {
         }
     };
     getInitialData();
+
+    const getPokemons = async () => {
+        try {
+            const { data } = await axios.get(`https://pokeapi.co/api/v2/type/${selectedType}`);
+            const pokeList = [];
+            data.pokemon.forEach((mon) => {
+                const { pokemon } = mon;
+                pokeList.push(pokemon);
+            });
+            setPokeList(pokeList);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     useEffect(() => {
         // this is wehere we will make additional api calls to get related data to the selected Type
-        if (selectedType) console.log(selectedType);
+        if (selectedType) {
+            getPokemons();
+        }
     }, [selectedType]);
+
+    useEffect(() => {
+        if (selectedPokemon) console.log(selectedPokemon);
+    }, [selectedPokemon]);
     return (
         <div className="App">
             <Header />
             <main>
-                <span className="MonList"> place holder for Pokemon List</span>
-                <BubbleChart bubbleData={pokeTypes} setSelected={setSelected} selected={selectedType} />
+                <PokeList
+                    className="MonList"
+                    pokemon={pokemonList}
+                    selected={selectedType}
+                    setSelectedMon={setSelectedMon}
+                />
+                <BubbleChart
+                    bubbleData={pokeTypes}
+                    setSelected={setSelected}
+                    selected={selectedType}
+                    setPokeList={setPokeList}
+                />
                 <span className="Detail"> placeholder for Detail</span>
             </main>
         </div>

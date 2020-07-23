@@ -14,7 +14,7 @@ const useWindowSize = () => {
     return size;
 };
 
-export default ({ bubbleData, setSelected, selected }) => {
+export default ({ bubbleData, setSelected, selected, setPokeList }) => {
     const [width, height] = useWindowSize();
 
     const pack = (data) =>
@@ -66,6 +66,7 @@ export default ({ bubbleData, setSelected, selected }) => {
                             transform={`translate(${child.x + 1},${child.y + 1})`}
                             onClick={() => {
                                 setSelected(child.data.type);
+                                setPokeList([]);
                             }}
                         >
                             <circle
