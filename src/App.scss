@@ -4,8 +4,7 @@
     text-align: left;
 
     #PokeTitle {
-        font-size: 1.5rem;
-        font-weight: 700;
+        font: var(--title-font);
     }
 
     header {
@@ -14,17 +13,13 @@
     main {
         grid-area: main;
         display: grid;
-        grid: 'line bubble family' / auto 1fr auto;
+        grid: 'mons bubble detail' / 15% 60% 25%;
     }
-    .Line {
-        grid-area: line;
+    .Detail {
+        grid-area: detail;
     }
     .BubbleChart {
         grid-area: bubble;
         justify-self: center;
-    }
-
-    .Family {
-        grid-area: family;
     }
 }

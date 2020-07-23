@@ -1,0 +1,43 @@
+.MonList {
+    grid-area: mons;
+    width: 100%;
+
+    h2 {
+        font: var(--title-font);
+        margin: 0 0.2rem;
+    }
+
+    ul {
+        height: 80vh;
+        margin: 1rem 0 0 0;
+        padding: 0;
+        overflow: auto;
+        width: 100%;
+    }
+
+    &__pokemon {
+        list-style: none;
+        padding: 0.1rem 0.5rem;
+
+        button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem 0 0.5rem 0.25rem;
+            text-align: left;
+            text-transform: uppercase;
+            width: 100%;
+
+            &:hover {
+                outline: none;
+                background: var(--color-id-teal);
+                font-weight: 700;
+            }
+            &:focus {
+                outline: none;
+                background: var(--color-id-lime);
+                font-weight: 700;
+            }
+        }
+    }
+}
