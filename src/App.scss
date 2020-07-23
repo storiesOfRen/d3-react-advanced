@@ -14,7 +14,7 @@
     main {
         grid-area: main;
         display: grid;
-        grid: 'mons bubble detail' / auto 1fr auto;
+        grid: 'mons bubble detail' / 25% 50% 25%;
     }
     .Detail {
         grid-area: detail;
@@ -25,6 +25,6 @@
     }
 
     .MonList {
-        grid-area: family;
+        grid-area: mons;
     }
 }
