@@ -4,7 +4,8 @@
 
     h2 {
         font: var(--title-font);
-        margin: 0 0.2rem;
+        text-transform: capitalize;
+        padding-left: 0.5rem;
     }
 
     ul {
@@ -12,7 +13,7 @@
         margin: 1rem 0 0 0;
         padding: 0;
         overflow: auto;
-        width: 100%;
+        width: 65%;
     }
 
     &__pokemon {
@@ -39,5 +40,21 @@
                 font-weight: 700;
             }
         }
+    }
+}
+
+.BubbleChart {
+    grid-area: bubble;
+    justify-self: center;
+}
+
+.Detail {
+    grid-area: detail;
+
+    img {
+        width: 20rem;
+    }
+    h2 {
+        text-transform: capitalize;
     }
 }

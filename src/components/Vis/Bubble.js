@@ -54,9 +54,9 @@ export default ({ bubbleData, setSelected, selected, setPokeList }) => {
             overflow="auto"
         >
             <title>Pokemon Types</title>
-            <text id="PokeTitle" textAnchor="middle" transform={`translate(${width / 2},20)`}>
+            {/* <text id="PokeTitle" textAnchor="middle" transform={`translate(${width / 2},20)`}>
                 Pokemon Types
-            </text>
+            </text> */}
 
             {pokeStuffing.children &&
                 pokeStuffing.children.map((child, index) => {
