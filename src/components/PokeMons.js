@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Styles.scss';
 
-export default ({ className, pokemon, selected }) => {
+export default ({ className, pokemon, selected, setSelectedMon }) => {
     return (
         <aside className={className}>
             {selected && <h2>{selected} Pokemon</h2>}
             <ul>
-                {pokemon.map((monster) => {
+                {pokemon.map((monster, index) => {
                     return (
-                        <li className={`${className}__pokemon`}>
+                        <li key={index} className={`${className}__pokemon`}>
                             <button
                                 onClick={() => {
                                     setSelectedMon(monster.url);
