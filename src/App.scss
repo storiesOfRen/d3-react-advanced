@@ -19,6 +19,6 @@
     main {
         grid-area: main;
         display: grid;
-        grid: 'mons bubble detail' / 20% 35% 30%;
+        grid: 'mons bubble detail' / 20% 1fr 30%;
     }
 }

@@ -58,3 +58,10 @@
         text-transform: capitalize;
     }
 }
+
+.PokeStats {
+    &__container {
+        height: 10rem;
+        width: 100%;
+    }
+}
