@@ -16,7 +16,7 @@
             padding: 0 1rem;
         }
     }
-    main {
+    &__main {
         grid-area: main;
         display: grid;
         grid: 'mons bubble detail' / 20% 1fr 30%;

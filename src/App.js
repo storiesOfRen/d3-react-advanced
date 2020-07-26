@@ -72,7 +72,7 @@ const App = () => {
     return (
         <div className="App">
             <Header />
-            <main>
+            <main className="App__main">
                 <PokeList
                     className="MonList"
                     pokemon={pokemonList}

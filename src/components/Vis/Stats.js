@@ -1,47 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as d3 from 'd3';
 import { useResize } from './Resize';
-import Axis from './Axis';
-const colors = d3.scaleOrdinal(d3.schemeCategory10);
-const format = d3.format('.2f');
-
-const XAxis = ({ top, bottom, left, right, height, scale }) => {
-    const axis = useRef(null);
-
-    useEffect(() => {
-        d3.select(axis.current).call(d3.axisBottom(scale));
-    });
-
-    return <g className="axis x" ref={axis} transform={`translate(${left}, ${height - bottom})`} />;
-};
-
-const YAxis = ({ top, left, scale }) => {
-    const axis = useRef(null);
-
-    useEffect(() => {
-        d3.select(axis.current).call(d3.axisLeft(scale));
-    });
-
-    return <g className="axis y" ref={axis} transform={`translate(${left}, ${top})`} />;
-};
-
-const Rect = ({ data, x, y, height, top, bottom, index }) => {
-    console.log(data);
-    return (
-        <g transform={`translate(${x(data.date)}, ${y(data.y)})`}>
-            <rect width={x.bandwidth()} height={height - bottom - top - y(data.y)} fill={colors(index)} />
-            <text
-                transform={`translate(${x.bandwidth() / 2}, ${-2})`}
-                textAnchor="middle"
-                alignmentBaseline="baseline"
-                fill="grey"
-                fontSize="10"
-            >
-                {format(data.y)}
-            </text>
-        </g>
-    );
-};
+import XAxis from './Axis';
+const colors = ['#F8D030', '#98D8D8', '#C03028', '#A040A0', '#E0C068', '#A890F0', '#F85888'];
 
 export default ({ data }) => {
     const { size, ref } = useResize();
@@ -61,30 +22,47 @@ export default ({ data }) => {
     const x = (data) =>
         d3
             .scaleBand()
-            .range([margin.left, width - margin.right])
+            .range([0, width - 20])
             .domain(d3.range(data.length))
-            .padding(0.1);
+            .padding(0.2);
     const xLinear = x(graphData);
     const y = (data) =>
         d3
             .scaleLinear()
-            .range([height - margin.bottom, margin.top])
+            .range([height - 10, 0])
             .domain([0, d3.max(data, (d) => d.y)])
             .nice();
-    const xLinear = y(graphData);
+    const yLinear = y(graphData);
 
     return (
         <div className="PokeStats__container" ref={ref}>
+            <h3>Stats</h3>
             <svg className="PokeStats" width={width} height={height} viewBox={`0 0 ${width} ${height}`} overflow="auto">
+                <title>Pokemon Stats</title>
+                <XAxis bottom={20} left={10} right={0} height={height} scale={xLinear} data={graphData} />
                 {graphData.map((stat, index) => {
                     return (
-                        <g transform={`translate(${x(index)}, ${y(stat.y)})`}>
-                            <rect x={xLinear} y={xLinear} height={height} width={x.bandwidth()} fill={colors[index]} />
+                        <g transform={`translate(${10}, ${-10})`}>
+                            <text
+                                transform={`translate(${xLinear(index) + 25}, ${yLinear(stat.y)})`}
+                                textAnchor="middle"
+                                alignmentBaseline="baseline"
+                                fill="#000"
+                                fontSize="16"
+                            >
+                                {stat.y}
+                            </text>
+                            <rect
+                                x={xLinear(index)}
+                                y={yLinear(stat.y)}
+                                height={yLinear(0) - yLinear(stat.y)}
+                                width={xLinear.bandwidth()}
+                                fill={colors[index]}
+                            />
                         </g>
                     );
                 })}
             </svg>
-            <Axis domain={[0, 100]} range={[10, width - 10]} width={width} />
         </div>
     );
 };

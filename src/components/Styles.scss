@@ -51,8 +51,13 @@
 .Detail {
     grid-area: detail;
 
+    &__main {
+        display: grid;
+        grid: 'image' auto 'graph' 1fr / 1fr;
+    }
     img {
-        width: 20rem;
+        grid-area: image;
+        width: 21rem;
     }
     h2 {
         text-transform: capitalize;
@@ -61,7 +66,8 @@
 
 .PokeStats {
     &__container {
-        height: 10rem;
+        grid-area: graph;
+        height: 15rem;
         width: 100%;
     }
 }

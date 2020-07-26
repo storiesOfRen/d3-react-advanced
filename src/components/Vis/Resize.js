@@ -1,9 +1,9 @@
-import { useState, useLayoutEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const useResize = () => {
     const ref = useRef(null);
     const [size, setSize] = useState([0, 0]);
-    useLayoutEffect(() => {
+    useEffect(() => {
         function updateSize() {
             if (ref.current) {
                 setSize([ref.current.clientWidth, ref.current.clientHeight]);
