@@ -1,30 +1,22 @@
 .App {
     display: grid;
-    grid: 'header' auto 'main' 1fr / 1fr;
+    grid: "header" auto "main" 1fr / 1fr;
     text-align: left;
-
-    #PokeTitle {
-        font-size: 1.5rem;
-        font-weight: 700;
+  
+    &__header {
+      background: var(--color-id-purple);
+      color: var(--color-id-teal);
+      grid-area: header;
+  
+      h1 {
+        padding: 0 1rem;
+      }
     }
-
-    header {
-        grid-area: header;
+  
+    &__main {
+      grid-area: main;
+      display: grid;
+      grid: "mons bubble detail" / 20% 1fr 30%;
     }
-    main {
-        grid-area: main;
-        display: grid;
-        grid: 'line bubble family' / auto 1fr auto;
-    }
-    .Line {
-        grid-area: line;
-    }
-    .BubbleChart {
-        grid-area: bubble;
-        justify-self: center;
-    }
-
-    .Family {
-        grid-area: family;
-    }
-}
+  }
+  

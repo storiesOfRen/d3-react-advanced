@@ -21,9 +21,6 @@ export default ({ bubbleData }) => {
     return (
         <svg className="BubbleChart" width={width} height={height} viewBox={`0 0 ${width} ${height}`} overflow="auto">
             <title>Pokemon Types</title>
-            <text id="PokeTitle" textAnchor="middle" transform={`translate(${width / 2},20)`}>
-                Pokemon Types
-            </text>
         </svg>
     );
 };
