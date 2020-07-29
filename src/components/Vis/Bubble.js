@@ -47,36 +47,38 @@ export default ({ bubbleData, setSelected, selected }) => {
                 overflow="auto"
             >
                 <title>Pokemon Types</title>
-                {pokeStuffing.children &&
-                    pokeStuffing.children.map((child, index) => {
-                        return (
-                            <g
-                                key={index}
-                                transform={`translate(${child.x + 1},${child.y + 1})`}
-                                onClick={() => {
-                                    setSelected(child.data);
-                                }}
-                            >
-                                <circle
-                                    id={`${child.data.type}-${child.data.count}`}
-                                    r={child.r}
-                                    fillOpacity={selected.type === child.data.type ? '1' : '0.45'}
-                                    fill={colors[child.data.type.toLowerCase()] || '#ff7f0e'}
-                                />
-                            </g>
-                        );
-                    })}
+                {pokeStuffing.children && (
+                    <>
+                        {pokeStuffing.children.map((child, index) => {
+                            return (
+                                <g
+                                    key={index}
+                                    transform={`translate(${child.x + 1},${child.y + 1})`}
+                                    onClick={() => {
+                                        setSelected(child.data);
+                                    }}
+                                >
+                                    <circle
+                                        id={`${child.data.type}-${child.data.count}`}
+                                        r={child.r}
+                                        fillOpacity={selected.type === child.data.type ? '1' : '0.45'}
+                                        fill={colors[child.data.type.toLowerCase()] || '#ff7f0e'}
+                                    />
+                                </g>
+                            );
+                        })}
 
-                {pokeStuffing.children &&
-                    pokeStuffing.children.map((child, index) => {
-                        return (
-                            <g key={index} transform={`translate(${child.x + 1},${child.y + 1})`}>
-                                <text textAnchor="middle" fill="#000000">
-                                    <tspan>{child.data.type.toUpperCase()}</tspan>
-                                </text>
-                            </g>
-                        );
-                    })}
+                        {pokeStuffing.children.map((child, index) => {
+                            return (
+                                <g key={index} transform={`translate(${child.x + 1},${child.y + 1})`}>
+                                    <text textAnchor="middle" fill="#000000">
+                                        <tspan>{child.data.type.toUpperCase()}</tspan>
+                                    </text>
+                                </g>
+                            );
+                        })}
+                    </>
+                )}
             </svg>
         </div>
     );

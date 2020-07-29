@@ -29,6 +29,7 @@ const App = () => {
         }
     };
     getInitialData();
+
     useEffect(() => {
         // this is wehere we will make additional api calls to get related data to the selected Type
         if (selectedType) console.log(selectedType);
