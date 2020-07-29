@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React from 'react';
 import * as d3 from 'd3';
 import { useResize } from './Resize';
 
@@ -54,13 +54,13 @@ export default ({ bubbleData, setSelected, selected }) => {
                                 key={index}
                                 transform={`translate(${child.x + 1},${child.y + 1})`}
                                 onClick={() => {
-                                    setSelected(child.data.type);
+                                    setSelected(child.data);
                                 }}
                             >
                                 <circle
                                     id={`${child.data.type}-${child.data.count}`}
                                     r={child.r}
-                                    fillOpacity={selected === child.data.type ? '1' : '0.45'}
+                                    fillOpacity={selected.type === child.data.type ? '1' : '0.45'}
                                     fill={colors[child.data.type.toLowerCase()] || '#ff7f0e'}
                                 />
                             </g>

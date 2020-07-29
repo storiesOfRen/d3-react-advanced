@@ -6,7 +6,7 @@ import './App.scss';
 
 const App = () => {
     const [pokeTypes, setTypes] = useState([]);
-    const [selectedType, setSelected] = useState('');
+    const [selectedType, setSelected] = useState({});
 
     const getInitialData = async () => {
         try {
@@ -19,7 +19,7 @@ const App = () => {
                         type: data.results[i].name,
                         count: response.data.pokemon.length,
                         value: response.data.pokemon.length,
-                        data: response.data,
+                        pokemon: response.data.pokemon,
                     });
                 }
             }
@@ -36,7 +36,7 @@ const App = () => {
     return (
         <div className="App">
             <Header />
-            <main>
+            <main className="App__main">
                 <span className="MonList"> place holder for Pokemon List</span>
                 <BubbleChart bubbleData={pokeTypes} setSelected={setSelected} selected={selectedType} />
                 <span className="Detail"> placeholder for Detail</span>
