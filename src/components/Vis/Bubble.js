@@ -1,21 +1,13 @@
 import React, { useState, useLayoutEffect } from 'react';
 import * as d3 from 'd3';
-
-const useWindowSize = () => {
-    const [size, setSize] = useState([0, 0]);
-    useLayoutEffect(() => {
-        function updateSize() {
-            setSize([window.innerWidth, window.innerHeight]);
-        }
-        window.addEventListener('resize', updateSize);
-        updateSize();
-        return () => window.removeEventListener('resize', updateSize);
-    }, []);
-    return size;
-};
+import { useResize } from './Resize';
 
 export default ({ bubbleData, setSelected, selected }) => {
-    const [width, height] = useWindowSize();
+    const { size, ref } = useResize();
+    const [width, height] = size;
+
+    // Creates a new pack layout with the default settings: the default sort order is by ascending value; the default children accessor assumes each input data is an object with a children array; the default size is 1×1.
+    // https://d3-wiki.readthedocs.io/zh_CN/master/Pack-Layout/#pack
 
     const pack = (data) =>
         d3
@@ -46,48 +38,46 @@ export default ({ bubbleData, setSelected, selected }) => {
     };
 
     return (
-        <svg
-            className="BubbleChart"
-            width={width}
-            height={height}
-            viewBox={`0 0 ${width + 200} ${height + 200}`}
-            overflow="auto"
-        >
-            <title>Pokemon Types</title>
-            <text id="PokeTitle" textAnchor="middle" transform={`translate(${width / 2},20)`}>
-                Pokemon Types
-            </text>
+        <div ref={ref} style={{ width: '100%', height: '90vh' }}>
+            <svg
+                className="BubbleChart"
+                width={width}
+                height={height}
+                viewBox={`0 0 ${width} ${height}`}
+                overflow="auto"
+            >
+                <title>Pokemon Types</title>
+                {pokeStuffing.children &&
+                    pokeStuffing.children.map((child, index) => {
+                        return (
+                            <g
+                                key={index}
+                                transform={`translate(${child.x + 1},${child.y + 1})`}
+                                onClick={() => {
+                                    setSelected(child.data.type);
+                                }}
+                            >
+                                <circle
+                                    id={`${child.data.type}-${child.data.count}`}
+                                    r={child.r}
+                                    fillOpacity={selected === child.data.type ? '1' : '0.45'}
+                                    fill={colors[child.data.type.toLowerCase()] || '#ff7f0e'}
+                                />
+                            </g>
+                        );
+                    })}
 
-            {pokeStuffing.children &&
-                pokeStuffing.children.map((child, index) => {
-                    return (
-                        <g
-                            key={index}
-                            transform={`translate(${child.x + 1},${child.y + 1})`}
-                            onClick={() => {
-                                setSelected(child.data.type);
-                            }}
-                        >
-                            <circle
-                                id={`${child.data.type}-${child.data.count}`}
-                                r={child.r}
-                                fillOpacity={selected === child.data.type ? '1' : '0.7'}
-                                fill={colors[child.data.type.toLowerCase()] || '#ff7f0e'}
-                            />
-                        </g>
-                    );
-                })}
-
-            {pokeStuffing.children &&
-                pokeStuffing.children.map((child, index) => {
-                    return (
-                        <g key={index} transform={`translate(${child.x + 1},${child.y + 1})`}>
-                            <text textAnchor="middle" fill="#000000">
-                                <tspan>{child.data.type.toUpperCase()}</tspan>
-                            </text>
-                        </g>
-                    );
-                })}
-        </svg>
+                {pokeStuffing.children &&
+                    pokeStuffing.children.map((child, index) => {
+                        return (
+                            <g key={index} transform={`translate(${child.x + 1},${child.y + 1})`}>
+                                <text textAnchor="middle" fill="#000000">
+                                    <tspan>{child.data.type.toUpperCase()}</tspan>
+                                </text>
+                            </g>
+                        );
+                    })}
+            </svg>
+        </div>
     );
 };
