@@ -13,6 +13,8 @@ const App = () => {
     const [selectedPokemon, setSelectedMon] = useState('');
     const [pokemonList, setPokeList] = useState([]);
     const [selectedPokemonData, setMonData] = useState(null);
+    const [listLoading, setListLoading] = useState(false);
+    const [monLoading, setMonLoading] = useState(false);
 
     const getInitialData = async () => {
         try {
@@ -37,6 +39,7 @@ const App = () => {
     getInitialData();
 
     const getPokemons = async () => {
+        setListLoading(true);
         try {
             const { data } = await axios.get(`https://pokeapi.co/api/v2/type/${selectedType}`);
             const pokeList = [];
@@ -49,8 +52,12 @@ const App = () => {
             console.error(err);
         }
     };
+    useEffect(() => {
+        setListLoading(false);
+    }, [pokemonList]);
 
     const getSelectPokemon = async () => {
+        setMonLoading(true);
         try {
             const { data } = await axios.get(`${selectedPokemon}`);
             setMonData(data);
@@ -58,6 +65,9 @@ const App = () => {
             console.error(err);
         }
     };
+    useEffect(() => {
+        setMonLoading(false);
+    }, [selectedPokemonData]);
 
     useEffect(() => {
         // this is wehere we will make additional api calls to get related data to the selected Type
@@ -78,6 +88,7 @@ const App = () => {
                     pokemon={pokemonList}
                     selected={selectedType}
                     setSelectedMon={setSelectedMon}
+                    listLoading={listLoading}
                 />
                 <BubbleChart
                     bubbleData={pokeTypes}
@@ -85,7 +96,7 @@ const App = () => {
                     selected={selectedType}
                     setPokeList={setPokeList}
                 />
-                {selectedPokemonData && <PokemonDetails pokemon={selectedPokemonData} />}
+                {selectedPokemonData && <PokemonDetails pokemon={selectedPokemonData} monLoading={monLoading} />}
             </main>
         </div>
     );

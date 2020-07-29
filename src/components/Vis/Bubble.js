@@ -58,7 +58,7 @@ export default ({ bubbleData, setSelected, selected, setPokeList }) => {
                                 <circle
                                     id={`${child.data.type}-${child.data.count}`}
                                     r={child.r}
-                                    fillOpacity={selected === child.data.type ? '1' : '0.7'}
+                                    fillOpacity={selected === child.data.type ? '1' : '0.45'}
                                     fill={colors[child.data.type.toLowerCase()] || '#ff7f0e'}
                                 />
                             </g>

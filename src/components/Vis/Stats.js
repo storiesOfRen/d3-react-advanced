@@ -37,7 +37,13 @@ export default ({ data }) => {
     return (
         <div className="PokeStats__container" ref={ref}>
             <h3>Stats</h3>
-            <svg className="PokeStats" width={width} height={height} viewBox={`0 0 ${width} ${height}`} overflow="auto">
+            <svg
+                className="PokeStats"
+                width={width}
+                height={height + 30}
+                viewBox={`0 0 ${width} ${height}`}
+                overflow="auto"
+            >
                 <title>Pokemon Stats</title>
                 <XAxis bottom={20} left={10} right={0} height={height} scale={xLinear} data={graphData} />
                 {graphData.map((stat, index) => {

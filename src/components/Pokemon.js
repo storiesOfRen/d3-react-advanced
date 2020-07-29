@@ -1,7 +1,9 @@
 import React from 'react';
+import Spinner from './Loading';
 import Stats from './Vis/Stats';
 
-export default ({ pokemon }) => {
+export default ({ pokemon, monLoading }) => {
+    if (monLoading) return <Spinner />;
     return (
         <aside className="Detail">
             <header aria-label="Selected Pokemon header">
