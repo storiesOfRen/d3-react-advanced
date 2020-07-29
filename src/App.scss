@@ -7,19 +7,18 @@
         font: var(--title-font);
     }
 
-    header {
+    &__header {
+        background: var(--color-id-purple);
+        color: var(--color-id-lime);
         grid-area: header;
+
+        h1 {
+            padding: 0 1rem;
+        }
     }
-    main {
+    &__main {
         grid-area: main;
         display: grid;
-        grid: 'mons bubble detail' / 15% 60% 25%;
-    }
-    .Detail {
-        grid-area: detail;
-    }
-    .BubbleChart {
-        grid-area: bubble;
-        justify-self: center;
+        grid: 'mons bubble detail' / 20% 1fr 30%;
     }
 }

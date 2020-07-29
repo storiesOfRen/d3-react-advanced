@@ -1,7 +1,9 @@
 import React from 'react';
+import Spinner from './Loading';
 import './Styles.scss';
 
-export default ({ className, pokemon, selected, setSelectedMon }) => {
+export default ({ className, pokemon, selected, setSelectedMon, listLoading }) => {
+    if (listLoading) return <Spinner />;
     return (
         <aside className={className}>
             {selected && <h2>{selected} Pokemon</h2>}
