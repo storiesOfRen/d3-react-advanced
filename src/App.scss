@@ -3,18 +3,22 @@
     grid: 'header' auto 'main' 1fr / 1fr;
     text-align: left;
 
-    #PokeTitle {
-        font: var(--title-font);
+    &__header {
+        background: var(--color-id-purple);
+        color: var(--color-id-teal);
+        grid-area: header;
+
+        h1 {
+            padding: 0 1rem;
+        }
     }
 
-    header {
-        grid-area: header;
-    }
-    main {
+    &__main {
         grid-area: main;
         display: grid;
-        grid: 'mons bubble detail' / 15% 60% 25%;
+        grid: 'mons bubble detail' / 20% 1fr 30%;
     }
+
     .Detail {
         grid-area: detail;
     }
