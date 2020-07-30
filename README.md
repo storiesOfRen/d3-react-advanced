@@ -1,8 +1,8 @@
 
-
 <p align="center">
     <img alt='Imagine Dat presents the React + D3 workshop on August 22' src="readme_assets/event.png" />
 </p>
+
 
 # D3 + React Workshop
 
