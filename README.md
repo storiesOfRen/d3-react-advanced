@@ -14,12 +14,12 @@ This repository supports a free, online workshop hosted by [Imagine Dat](http://
 
 Go to your terminal and use the following command to clone:
 
-`git clone git@github.com:milufranz08/d3-react-tutorial.git`
+`git clone https://github.com/imagine-dat/d3-react-advanced.git`
 
-A folder called **d3-react-tutorial** has been created.<br>
+A folder called **d3-react-advanced** has been created.<br>
 Enter this directory with the following command:
 
-`cd d3-react-tutorial`
+`cd d3-react-advanced`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) so you will need to install some dependencies to run it:
 
@@ -37,28 +37,27 @@ You will also see any lint errors in the console.
 ---
 
 ## Branches
-This project has been structured with multiple branches so you are able to follow along during the workshop!
+
+
+This project has been structured with multiple branches so you are able to view the creation of the App in steps!
 
 By default you are going to be in the `master` branch, which will contain the final product. 
 
-To start following along switch to the different branches by fetching them:
+To have access to the the steps:
 
 `git fetch`
 
 and then using the `git checkout` command followed by the `branch-name`.
 
-As an example, let's switch to **00-clean-start** branch:
-
-`git checkout 00-clean-start`
-
+`git checkout 01-get-data`
 
 ### All branches available:
-- 00-clean-start
-- 01-generate-data-intro
-- 02-bind-data-to-svg
-- 03-add-animations-and-transitions
-- 04-responsiveness
-- 05-axes-and-scalability
+- 01-get-data
+- 02-bubble-chart
+- 03-get-second-dataset
+- 04-selected-pokemon
+
+For my section, to accomodate for time I recommend following along with the master branch rather than building outright.
 
 ---
 
@@ -78,10 +77,6 @@ Subscribe to our [mailing list](http://www.imagine-dat.com/mailing_list/) to kee
 - **IG:** [@imagine_dat_dyt](https://www.instagram.com/imagine_dat_dyt/)
 
 ### Presenters
-
-<p align="center">
-    <img src="readme_assets/presenters_images.png" />
-</p>
 
 
 <table border="0" width=100% align="center">
