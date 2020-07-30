@@ -103,7 +103,7 @@ Subscribe to our [mailing list](http://www.imagine-dat.com/mailing_list/) to kee
         <p><a href="https://dev.to/stories_of_ren">@stories_of_ren</a></p>
         <p><a href="https://twitter.com/stories_of_ren">@stories_of_ren</a></p>
         <p><a href="https://github.com/nrenc027">nrenc027</a></p>
-        <p><a href="https://codepen.io/ren_estep">@ren_step</a></p>
+        <p><a href="https://codepen.io/ren_estep">@ren_estep</a></p>
     </td>
     <td>
         <p><a href="http://milufranz.com/">milufranz.com</a></p>
