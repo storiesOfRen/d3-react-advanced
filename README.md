@@ -83,7 +83,7 @@ Subscribe to our [mailing list](http://www.imagine-dat.com/mailing_list/) to kee
 ### Presenters
 
 <p align="center">
-    <img alt='Ren and Milu' src="readme_assets/presenters_images.png" />
+    <img alt='Ren and Milu' src="readme_assets/presenters.png" />
 </p>
 
 
