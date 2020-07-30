@@ -9,11 +9,10 @@ import './App.scss';
 
 const App = () => {
     const [pokeTypes, setTypes] = useState([]);
-    const [selectedType, setSelected] = useState('');
+    const [selectedType, setSelected] = useState({});
     const [selectedPokemon, setSelectedMon] = useState('');
     const [pokemonList, setPokeList] = useState([]);
     const [selectedPokemonData, setMonData] = useState(null);
-    const [listLoading, setListLoading] = useState(false);
     const [monLoading, setMonLoading] = useState(false);
 
     const getInitialData = async () => {
@@ -27,7 +26,7 @@ const App = () => {
                         type: data.results[i].name,
                         count: response.data.pokemon.length,
                         value: response.data.pokemon.length,
-                        data: response.data,
+                        pokemon: response.data.pokemon,
                     });
                 }
             }
@@ -39,22 +38,8 @@ const App = () => {
     getInitialData();
 
     const getPokemons = async () => {
-        setListLoading(true);
-        try {
-            const { data } = await axios.get(`https://pokeapi.co/api/v2/type/${selectedType}`);
-            const pokeList = [];
-            data.pokemon.forEach((mon) => {
-                const { pokemon } = mon;
-                pokeList.push(pokemon);
-            });
-            setPokeList(pokeList);
-        } catch (err) {
-            console.error(err);
-        }
+        if (selectedType?.type) setPokeList(selectedType.pokemon);
     };
-    useEffect(() => {
-        setListLoading(false);
-    }, [pokemonList]);
 
     const getSelectPokemon = async () => {
         setMonLoading(true);
@@ -70,7 +55,6 @@ const App = () => {
     }, [selectedPokemonData]);
 
     useEffect(() => {
-        // this is wehere we will make additional api calls to get related data to the selected Type
         if (selectedType) {
             getPokemons();
         }
@@ -88,7 +72,6 @@ const App = () => {
                     pokemon={pokemonList}
                     selected={selectedType}
                     setSelectedMon={setSelectedMon}
-                    listLoading={listLoading}
                 />
                 <BubbleChart
                     bubbleData={pokeTypes}
