@@ -1,5 +1,7 @@
 
-
+<p align="center">
+    <img alt='Imagine Dat presents the React + D3 workshop on August 22' src="readme_assets/event.png" />
+</p>
 
 
 # D3 + React Workshop
@@ -63,7 +65,9 @@ For my section, to accomodate for time I recommend following along with the mast
 
 ## About Imagine Dat
 
-
+<p align="center" style="padding: 1em;">
+    <img alt='imagine dat' src="readme_assets/ID-Logo.svg" />
+</p>
 
 This free, online workshop was hosted by [Imagine Dat](http://www.imagine-dat.com/). 
 
@@ -77,6 +81,10 @@ Subscribe to our [mailing list](http://www.imagine-dat.com/mailing_list/) to kee
 - **IG:** [@imagine_dat_dyt](https://www.instagram.com/imagine_dat_dyt/)
 
 ### Presenters
+
+<p align="center">
+    <img alt='Ren and Milu' src="readme_assets/presenters.png" />
+</p>
 
 
 <table border="0" width=100% align="center">
